@@ -2,8 +2,12 @@ package speechSynthesis;
 
 import java.io.IOException;
 
+import javax.sound.sampled.AudioFormat;
+
 import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;
+import com.sun.speech.freetts.audio.AudioPlayer;
+
 import documentParsing.DocParseV1;
 
 public class SynthesisV1 {
@@ -16,8 +20,10 @@ public class SynthesisV1 {
 		 String voiceName = "kevin16";
 		 VoiceManager voiceManager = VoiceManager.getInstance();
 		 Voice voice = voiceManager.getVoice(voiceName);
+		 AudioPlayer player = voice.getAudioPlayer();
 		 voice.allocate();
 		 voice.setRate(150);
+		 voice.setAudioPlayer(player);
 		 voice.speak(input);
 		 voice.deallocate();
 	}

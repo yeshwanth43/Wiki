@@ -47,23 +47,24 @@ public class SampleSynthesis {
 	}
 
 	public void speak(String input) {
-		 String voiceName = "kevin16";
-		 VoiceManager voiceManager = VoiceManager.getInstance();
-		 Voice voice = voiceManager.getVoice(voiceName);
-		 voice.allocate();
-		 voice.setRate(150);
-		 voice.speak(input);
-		 voice.deallocate();
+//		 String voiceName = "kevin16";
+//		 VoiceManager voiceManager = VoiceManager.getInstance();
+//		 Voice voice = voiceManager.getVoice(voiceName);
+//		 voice.allocate();
+//		 voice.setRate(150);
+//		 voice.speak(input);
+//		 voice.deallocate();
+//		
 		
-//		this.synthesizer.speakPlainText(input, null);
-//		try {
-//			this.synthesizer.waitEngineState(Synthesizer.QUEUE_EMPTY);
-//			this.synthesizer.deallocate();
-//		} catch (EngineException | EngineStateError | IllegalArgumentException
-//				| InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		this.synthesizer.speakPlainText(input, null);
+		try {
+			this.synthesizer.waitEngineState(Synthesizer.QUEUE_EMPTY);
+			this.synthesizer.deallocate();
+		} catch (EngineException | EngineStateError | IllegalArgumentException
+				| InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public static void main(String[] args) {
