@@ -1,17 +1,12 @@
 package documentParsing;
 
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.io.StringReader;
 
-
-import  org.apache.tika.Tika;
+import org.apache.tika.Tika;
 import org.apache.tika.exception.TikaException;
 import org.apache.tika.metadata.Metadata;
 import org.apache.tika.parser.AutoDetectParser;
@@ -21,16 +16,15 @@ import org.apache.tika.sax.BodyContentHandler;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.SAXException;
 
-
 public class SampleTika {
 
 	/**
 	 * @author yeshwanth
 	 * @param args
 	 */
-	
-	public String clean(){
-		String extractedText= new String();
+
+	public String clean() {
+		String extractedText = new String();
 		Tika tika = new Tika();
 		Parser parser = new AutoDetectParser();
 		ContentHandler handler = new BodyContentHandler();
@@ -38,12 +32,11 @@ public class SampleTika {
 		try {
 			File input = new File("assets/uml2.pdf");
 			InputStream stream = new FileInputStream(input);
-			
+
 			parser.parse(stream, handler, meta, new ParseContext());
-			InputStreamReader reader = new InputStreamReader(stream); 
 			System.out.println("Title: " + meta.get("title"));
 			System.out.println("Author: " + meta.get("Author"));
-			System.out.println(handler.toString()+"\nContent: " );
+			System.out.println(handler.toString() + "\nContent: ");
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -58,7 +51,7 @@ public class SampleTika {
 			e.printStackTrace();
 		}
 		try {
-			extractedText = tika.parseToString(new File("assets/swsn.pdf"));			
+			extractedText = tika.parseToString(new File("assets/swsn.pdf"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -66,15 +59,14 @@ public class SampleTika {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 
 		return extractedText;
 	}
-	public static void main(String args[]){
+
+	public static void main(String args[]) {
 		SampleTika st = new SampleTika();
 		st.clean();
-		
-		
+
 	}
 
 }

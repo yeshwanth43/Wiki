@@ -26,8 +26,8 @@ public class SynthesisV1 {
 
 		SynthesisV1 sv1= new SynthesisV1();
 		DocParseV1 dv = new DocParseV1();
-		String input=dv.parse();
-		sv1.speak(input);
+		//String input=dv.parse();
+		//sv1.speak(input);
 	}
 
 }
