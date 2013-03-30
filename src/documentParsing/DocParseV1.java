@@ -35,8 +35,9 @@ public class DocParseV1 {
 
 	private String parsedText = "Document not Parsed Successfully";
 	public int no_Of_Sentences = 0;
-	public int no_Of_syllables = 0;
+	public int totalSyllableCount = 0;
 	public int no_Of_Words = 0;
+	public int no_Of_Characters = 0;
 
 	public boolean parse() throws IOException {
 
@@ -44,6 +45,9 @@ public class DocParseV1 {
 		System.out
 				.println("Enter the path for the Document to test Synthesizer");
 		String resourceLocation = br.readLine();
+		if (resourceLocation.isEmpty()) {
+			resourceLocation = "assets/readability.pdf";
+		}
 		Parser parser = new AutoDetectParser();
 		ContentHandler handler = new BodyContentHandler();
 		Metadata meta = new Metadata();
@@ -86,12 +90,10 @@ public class DocParseV1 {
 			no_Of_Sentences = sentences.length;
 			FleschKincaidReadabilityTest test = new FleschKincaidReadabilityTest();
 			for (String s : tokens) {
-				no_Of_syllables += test.CountSyllables(s);
+				totalSyllableCount += test.CountSyllables(s);
+				no_Of_Characters += s.length();
 			}
-			System.out.println(no_Of_Sentences + "\t sentences");
-			System.out.println(test.calculateReadabilityIndex(no_Of_Words,
-					no_Of_Sentences)+"\t readability Index");
-			System.out.println(no_Of_Words + "\t words");
+			statistics();
 			int i = 0;
 			File file = new File("parsed-contents/parsedcontent.txt");
 			FileWriter fw;
@@ -99,8 +101,9 @@ public class DocParseV1 {
 			BufferedWriter bw = new BufferedWriter(fw);
 			for (String s : sentences) {
 				i++;
-				// System.out.println(s + "\t" + i);
-				bw.write(s + "\n");
+				System.out.println(s + "\t" + i);
+				bw.write(s);
+				bw.flush();
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -115,9 +118,19 @@ public class DocParseV1 {
 		return no_Of_Sentences;
 	}
 
+	private void statistics() {
+		FleschKincaidReadabilityTest test = new FleschKincaidReadabilityTest();
+		System.out.println(no_Of_Sentences + "\t sentences");
+		System.out.println(no_Of_Words + "\t words");
+		System.out.println(no_Of_Characters + "\t characters");
+		System.out.println(test.calculateReadabilityIndex(no_Of_Words,
+				no_Of_Sentences, totalSyllableCount) + "\t readability Index");
+	}
+
 	public static void main(String args[]) throws IOException {
 		DocParseV1 dpv1 = new DocParseV1();
 		dpv1.parse();
+
 	}
 
 }

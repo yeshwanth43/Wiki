@@ -7,8 +7,6 @@ public class FleschKincaidReadabilityTest {
 	 * @param args
 	 */
 
-	public int totalSyllableCount = 0;
-
 	public int CountSyllables(String word) {
 		char[] vowels = new char[] { 'a', 'e', 'i', 'o', 'u', 'y' };
 		int sysllableCount = 0;
@@ -34,7 +32,6 @@ public class FleschKincaidReadabilityTest {
 			if (i < word.length() - 1)
 				if (wc == 'e'
 						&& (word.charAt(i + 1) == ' ' || word.charAt(i + 1) == '.')) {
-					System.out.println("i= " + i);
 					sysllableCount--;
 				}
 
@@ -45,11 +42,10 @@ public class FleschKincaidReadabilityTest {
 			if (!foundVowel)
 				lastWasVowel = false;
 		}
-		totalSyllableCount += sysllableCount;
 		return sysllableCount;
 	}
 
-	public double calculateReadabilityIndex(int totalWords, int totalSentences) {
+	public double calculateReadabilityIndex(int totalWords, int totalSentences, int totalSyllableCount) {
 		double readabilityIndex = 0;
 		System.out.println(totalSyllableCount+"\t total syllables");
 		readabilityIndex = (((0.39) * (totalWords / totalSentences)) + ((11.8) * (totalSyllableCount / totalWords)));
