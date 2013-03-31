@@ -1,0 +1,69 @@
+Language model created by QuickLM on Sat Mar 30 14:09:06 EDT 2013
+Copyright (c) 1996-2000
+Carnegie Mellon University and Alexander I. Rudnicky
+
+This model based on a corpus of 13 sentences and 14 words
+The (fixed) discount mass is 0.5
+
+\data\
+ngram 1=14
+ngram 2=24
+ngram 3=12
+
+\1-grams:
+-0.7782 </s> -0.3010
+-0.7782 <s> -0.2218
+-1.8921 EXIT -0.2218
+-1.5911 NEXT -0.2218
+-1.8921 PARSE -0.2218
+-1.8921 PAUSE -0.2218
+-1.8921 PLAY -0.2218
+-1.8921 PREVIOUS -0.2218
+-1.8921 RECORD -0.2218
+-1.8921 SAVE -0.2218
+-1.8921 SPEAK -0.2218
+-1.8921 START -0.2218
+-1.8921 STOP -0.2218
+-1.8921 TERMINATE -0.2218
+
+\2-grams:
+-1.4150 <s> EXIT 0.0000
+-1.1139 <s> NEXT 0.0000
+-1.4150 <s> PARSE 0.0000
+-1.4150 <s> PAUSE 0.0000
+-1.4150 <s> PLAY 0.0000
+-1.4150 <s> PREVIOUS 0.0000
+-1.4150 <s> RECORD 0.0000
+-1.4150 <s> SAVE 0.0000
+-1.4150 <s> SPEAK 0.0000
+-1.4150 <s> START 0.0000
+-1.4150 <s> STOP 0.0000
+-1.4150 <s> TERMINATE 0.0000
+-0.3010 EXIT </s> -0.3010
+-0.3010 NEXT </s> -0.3010
+-0.3010 PARSE </s> -0.3010
+-0.3010 PAUSE </s> -0.3010
+-0.3010 PLAY </s> -0.3010
+-0.3010 PREVIOUS </s> -0.3010
+-0.3010 RECORD </s> -0.3010
+-0.3010 SAVE </s> -0.3010
+-0.3010 SPEAK </s> -0.3010
+-0.3010 START </s> -0.3010
+-0.3010 STOP </s> -0.3010
+-0.3010 TERMINATE </s> -0.3010
+
+\3-grams:
+-0.3010 <s> EXIT </s>
+-0.3010 <s> NEXT </s>
+-0.3010 <s> PARSE </s>
+-0.3010 <s> PAUSE </s>
+-0.3010 <s> PLAY </s>
+-0.3010 <s> PREVIOUS </s>
+-0.3010 <s> RECORD </s>
+-0.3010 <s> SAVE </s>
+-0.3010 <s> SPEAK </s>
+-0.3010 <s> START </s>
+-0.3010 <s> STOP </s>
+-0.3010 <s> TERMINATE </s>
+
+\end\

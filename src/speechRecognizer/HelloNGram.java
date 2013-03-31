@@ -7,12 +7,8 @@ import edu.cmu.sphinx.util.props.ConfigurationManager;
 
 public class HelloNGram {
 	public static void main(String[] args) {
-		ConfigurationManager cm = new ConfigurationManager("assets/hellongram.config.xml");
-//		if (args.length > 0)
-//			cm = new ConfigurationManager(args[0]);
-//		else {
-//			cm = new ConfigurationManager(HelloNGram.class.getResource("hellongram.config.xml"));
-//		}
+		ConfigurationManager cm = new ConfigurationManager(HelloNGram.class.getResource("helloworld.config.xml"));
+
 		System.out.println("Loading...");
 		Recognizer recognizer = (Recognizer) cm.lookup("recognizer");
 		recognizer.allocate();
