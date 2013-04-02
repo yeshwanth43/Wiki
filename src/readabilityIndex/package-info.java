@@ -1,8 +1,0 @@
-/**
- * 
- */
-/**
- * @author yeshwanth
- *
- */
-package readabilityIndex;
