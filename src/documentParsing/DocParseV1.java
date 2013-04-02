@@ -41,15 +41,8 @@ public class DocParseV1 {
 	public int no_Of_Characters = 0;
 	public int no_Of_Polysyllables = 0;
 
-	private boolean parse() throws IOException {
+	public boolean parse(String resourceLocation) throws IOException {
 
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		System.out
-				.println("Enter the path for the Document to test Synthesizer");
-		String resourceLocation = br.readLine();
-		if (resourceLocation.isEmpty()) {
-			resourceLocation = "assets/readability.pdf";
-		}
 		Parser parser = new AutoDetectParser();
 		ContentHandler handler = new BodyContentHandler();
 		Metadata meta = new Metadata();
@@ -60,6 +53,7 @@ public class DocParseV1 {
 			parsedText = handler.toString();
 		} catch (FileNotFoundException e1) {
 			e1.printStackTrace();
+			return false;
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (SAXException e) {
@@ -67,6 +61,8 @@ public class DocParseV1 {
 		} catch (TikaException e) {
 			e.printStackTrace();
 		}
+		docProcessing();
+		statistics();
 		if (!parsedText.equals("Document not Parsed Successfully")) {
 			return true;
 		} else {
@@ -159,19 +155,13 @@ public class DocParseV1 {
 
 	}
 
-	public void processDocument() throws IOException {
-		if (parse()) {
-			docProcessing();
-			statistics();
-		} else {
-			System.out
-					.println("unable to process Document this time please try later");
-		}
-	}
-
 	public static void main(String args[]) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		System.out
+				.println("Enter the path for the Document to test Synthesizer");
+		String resourceLocation = br.readLine();
 		DocParseV1 dpv1 = new DocParseV1();
-		dpv1.processDocument();
+		dpv1.parse(resourceLocation);
 
 	}
 
