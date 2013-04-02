@@ -80,21 +80,24 @@ public class LicenseAgreement {
 		btnIAcceptAgreement.setBounds(135, 228, 192, 23);
 		frmLicenseAgreement.getContentPane().add(btnIAcceptAgreement);
 
-		JTextPane textPane = new JTextPane();
-		textPane.setBounds(10, 89, 414, 131);
-		frmLicenseAgreement.getContentPane().add(textPane);
+		JTextPane txtpnUseOfWiki = new JTextPane();
+		txtpnUseOfWiki.setEditable(false);
+		txtpnUseOfWiki.setFont(new Font("Arial", Font.PLAIN, 12));
+		txtpnUseOfWiki.setText("Use of WIKI is subject to following license terms,cited as below  \r\n\r\nIt is an open source application and can be used by any one, provided that the following conditions  are met:\r\n1. Commercial use of this product is strictly prohibited as some building blocks used in the product insist so.\r\n2. Redistribution and use in source and binary forms, with or without\r\nmodification, are permitted.");
+		txtpnUseOfWiki.setBounds(10, 75, 414, 142);
+		frmLicenseAgreement.getContentPane().add(txtpnUseOfWiki);
 
 		JLabel lblGraphicsG = new JLabel(
 				"Please go through the License Agreement");
-		lblGraphicsG.setFont(new Font("Arial", Font.PLAIN, 10));
-		lblGraphicsG.setBounds(10, 42, 346, 36);
+		lblGraphicsG.setFont(new Font("Arial", Font.PLAIN, 11));
+		lblGraphicsG.setBounds(10, 41, 346, 36);
 		frmLicenseAgreement.getContentPane().add(lblGraphicsG);
 
-		JLabel lblNewLabel = new JLabel("Wiki Synthesizer");
+		JLabel lblNewLabel = new JLabel("Wiki Speech Synthesizer");
 		lblNewLabel.setFont(new Font("Arial Black", Font.BOLD, 18));
 		lblNewLabel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		lblNewLabel.setBackground(new Color(47, 79, 79));
-		lblNewLabel.setBounds(132, 11, 206, 29);
+		lblNewLabel.setBounds(94, 11, 276, 29);
 		frmLicenseAgreement.getContentPane().add(lblNewLabel);
 		frmLicenseAgreement.setName("LicensAgreement");
 		frmLicenseAgreement.setMaximumSize(new Dimension(1024, 1024));

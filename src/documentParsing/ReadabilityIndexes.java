@@ -3,7 +3,7 @@ package documentParsing;
 public class ReadabilityIndexes {
 
 	/**
-	 * @author yeshwanth
+	 * @author yeshwanth & Rahul
 	 * @param args
 	 */
 
