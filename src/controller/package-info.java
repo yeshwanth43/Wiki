@@ -5,4 +5,4 @@
  * @author yeshwanth
  *
  */
-package readabilityIndex;
+package controller;
