@@ -16,11 +16,12 @@ import javax.swing.JLabel;
 import javax.swing.JTextPane;
 
 import org.eclipse.wb.swing.FocusTraversalOnArray;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
-public class LicenseAgreement {
+public class LicenseAgreement extends Controller {
 
-	private JFrame frmLicenseAgreement;
-
+	public JFrame frmLicenseAgreement;
 
 	/**
 	 * Launch the application.
@@ -47,6 +48,20 @@ public class LicenseAgreement {
 
 	private void initialize() {
 		frmLicenseAgreement = new JFrame();
+//		frmLicenseAgreement.addWindowListener(new WindowAdapter() {
+//			@Override
+//			public void windowOpened(WindowEvent arg0) {
+//				LicenseAgreement lag = new LicenseAgreement();
+//				lag.start();
+//				String s = lag.command;
+//				System.out.println(s+"License agreement");
+//				if (lag.command.equalsIgnoreCase("I Accept Agreement")) {
+//					LicenseAgreement.this.frmLicenseAgreement.dispose();
+//					Introduction tutorial = new Introduction();
+//					tutorial.frmTutorial.setVisible(true);
+//				}
+//			}
+//		});
 		frmLicenseAgreement.setResizable(false);
 		frmLicenseAgreement.getContentPane().setFont(
 				new Font("Arial", Font.PLAIN, 8));
@@ -73,7 +88,7 @@ public class LicenseAgreement {
 				LicenseAgreement.this.frmLicenseAgreement.dispose();
 				Introduction tutorial = new Introduction();
 				tutorial.frmTutorial.setVisible(true);
-				
+
 			}
 		});
 		btnIAcceptAgreement.setFont(new Font("Arial", Font.PLAIN, 11));
@@ -83,7 +98,8 @@ public class LicenseAgreement {
 		JTextPane txtpnUseOfWiki = new JTextPane();
 		txtpnUseOfWiki.setEditable(false);
 		txtpnUseOfWiki.setFont(new Font("Arial", Font.PLAIN, 12));
-		txtpnUseOfWiki.setText("Use of WIKI is subject to following license terms,cited as below  \r\n\r\nIt is an open source application and can be used by any one, provided that the following conditions  are met:\r\n1. Commercial use of this product is strictly prohibited as some building blocks used in the product insist so.\r\n2. Redistribution and use in source and binary forms, with or without\r\nmodification, are permitted.");
+		txtpnUseOfWiki
+				.setText("Use of WIKI is subject to following license terms,cited as below  \r\n\r\nIt is an open source application and can be used by any one, provided that the following conditions  are met:\r\n1. Commercial use of this product is strictly prohibited as some building blocks used in the product insist so.\r\n2. Redistribution and use in source and binary forms, with or without\r\nmodification, are permitted.");
 		txtpnUseOfWiki.setBounds(10, 75, 414, 142);
 		frmLicenseAgreement.getContentPane().add(txtpnUseOfWiki);
 
