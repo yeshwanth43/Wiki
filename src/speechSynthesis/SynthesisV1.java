@@ -2,10 +2,12 @@ package speechSynthesis;
 
 import java.io.IOException;
 
+import javax.speech.AudioException;
+import javax.speech.EngineStateError;
+
 import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;
-import com.sun.speech.freetts.audio.AudioPlayer;
-import com.sun.speech.freetts.audio.SingleFileAudioPlayer;
+import com.sun.speech.freetts.jsapi.FreeTTSSynthesizer;
 
 public class SynthesisV1 {
 
@@ -14,8 +16,8 @@ public class SynthesisV1 {
 	 * @param args
 	 */
 
+	private FreeTTSSynthesizer synth;
 	public void speak(String input) {
-		AudioPlayer player = null;
 		String voiceName = "kevin16";
 		VoiceManager voiceManager = VoiceManager.getInstance();
 		Voice voice = voiceManager.getVoice(voiceName);
@@ -25,10 +27,20 @@ public class SynthesisV1 {
 //		player = new SingleFileAudioPlayer("C://output",Type.WAVE);
 		voice.deallocate(); 
 	}
+	
+	
+	public void synth() throws AudioException, EngineStateError{
+		
+		synth = new FreeTTSSynthesizer(null);
+		this.synth.speakPlainText("hi how are u", null);
+		synth.pause();
+		synth.resume();
+		synth.cancel();
+	}
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, AudioException, EngineStateError {
 SynthesisV1 sv1= new SynthesisV1();
-sv1.speak("hey hi how are u , hope u are doing great bro");
+sv1.synth();
 
 	}
 
