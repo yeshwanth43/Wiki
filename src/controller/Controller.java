@@ -4,7 +4,6 @@ import edu.cmu.sphinx.frontend.util.Microphone;
 import edu.cmu.sphinx.recognizer.Recognizer;
 import edu.cmu.sphinx.result.Result;
 import edu.cmu.sphinx.util.props.ConfigurationManager;
-import speechRecognizer.SpeechRecognizer;
 
 public class Controller extends Thread {
 
@@ -14,11 +13,6 @@ public class Controller extends Thread {
 
 		Controller control = new Controller();
 		control.start();
-		// try {
-		// Controller.sleep(5000);
-		// } catch (InterruptedException e) {
-		// e.printStackTrace();
-		// }
 		control.init();
 
 	}
