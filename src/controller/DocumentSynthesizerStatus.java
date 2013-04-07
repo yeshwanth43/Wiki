@@ -1,36 +1,33 @@
 package controller;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-
-import java.awt.ComponentOrientation;
-import java.awt.Font;
 import java.awt.Color;
+import java.awt.ComponentOrientation;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
-import javax.swing.JLabel;
-
-import documentParsing.ReadJson;
-import javax.swing.JButton;
-
-import speechSynthesis.Synthesizer;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.LineBorder;
+
+import speechSynthesis.Player;
+import speechSynthesis.SynthesisV1;
+import documentParsing.ReadJson;
 
 public class DocumentSynthesizerStatus {
 
 	public JFrame frameDSS;
 	private ArrayList<String> arrayList = new ArrayList<String>();
+	private Player player = new Player();
 
 	/**
 	 * Launch the application.
@@ -59,12 +56,12 @@ public class DocumentSynthesizerStatus {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		int sentenceCount = 0;
 		frameDSS = new JFrame();
+		frameDSS.setLocation(new Point(200, 150));
 		frameDSS.setResizable(false);
 		final JTextPane textPane = new JTextPane();
 		textPane.setEditable(false);
-		
+
 		textPane.setToolTipText("this will show all the sentences and statistics of the document");
 		textPane.setName("SentenceDisplayer");
 		textPane.setFont(new Font("Arial", Font.PLAIN, 11));
@@ -86,7 +83,7 @@ public class DocumentSynthesizerStatus {
 //		textPane.addComponentListener(new ComponentAdapter() {
 //			@Override
 //			public void componentShown(ComponentEvent arg0) {
-				
+
 //			}
 //		});
 		frameDSS.getContentPane().setFont(new Font("Arial", Font.PLAIN, 11));
@@ -105,22 +102,61 @@ public class DocumentSynthesizerStatus {
 		textPane_1.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		textPane_1.setBounds(10, 35, 199, 253);
 		frameDSS.getContentPane().add(textPane_1);
-		
+
 		JScrollPane scrollPane = new JScrollPane(textPane);
 		scrollPane.setViewportBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setBounds(219, 11, 685, 277);
 		frameDSS.getContentPane().add(scrollPane);
-		
+
 		JButton btnNewButton = new JButton("Synthesize");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Synthesizer synth = new Synthesizer();
-				synth.speakSentence(arrayList.toString());
+				SynthesisV1 sv1 = new SynthesisV1();
+				sv1.speak(arrayList.toString());
+				player.start();
 			}
 		});
-		btnNewButton.setBounds(458, 299, 176, 23);
+		btnNewButton.setBounds(219, 299, 120, 23);
 		frameDSS.getContentPane().add(btnNewButton);
+		
+		JButton btnStop = new JButton("Stop");
+		btnStop.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				player.stop();
+			}
+		});
+		btnStop.setBounds(784, 299, 120, 23);
+		frameDSS.getContentPane().add(btnStop);
+		
+		JButton button = new JButton("Back to Wiki");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Wiki wiki = new Wiki();
+				DocumentSynthesizerStatus.this.frameDSS.dispose();
+				wiki.frmWiki.setVisible(true);
+			}
+		});
+		button.setBounds(51, 299, 108, 23);
+		frameDSS.getContentPane().add(button);
+		
+		JButton btnPause = new JButton("pause");
+		btnPause.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				player.pausePlayer();
+			}
+		});
+		btnPause.setBounds(419, 299, 120, 23);
+		frameDSS.getContentPane().add(btnPause);
+		
+		JButton btnResume = new JButton("resume");
+		btnResume.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				player.resumePlayer();
+			}
+		});
+		btnResume.setBounds(596, 299, 120, 23);
+		frameDSS.getContentPane().add(btnResume);
 		frameDSS.setBackground(Color.WHITE);
 		frameDSS.setVisible(true);
 		frameDSS.setTitle("Synthesizer");

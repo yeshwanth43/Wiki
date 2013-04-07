@@ -15,9 +15,10 @@ import javax.swing.JTextPane;
 import javax.swing.ImageIcon;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 
+import speechSynthesis.SynthesisV1;
+
 import documentParsing.DocParseV1;
 
-import speechSynthesis.Synthesizer;
 import java.awt.Component;
 import java.io.IOException;
 
@@ -73,8 +74,8 @@ public class WikiSynthesizer {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String input = txtpnEnterSomeText.getText();
-				Synthesizer synthesize = new Synthesizer();
-				synthesize.speakSentence(input);
+				SynthesisV1 sv1 = new SynthesisV1();
+				sv1.speakSentence(input);
 			}
 		});
 		btnNewButton.setIcon(new ImageIcon(
@@ -89,12 +90,12 @@ public class WikiSynthesizer {
 
 		JLabel lblNewLabel = new JLabel("File Path:");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel.setBounds(10, 317, 66, 22);
+		lblNewLabel.setBounds(10, 299, 66, 22);
 		frmWikiSynthesizer.getContentPane().add(lblNewLabel);
 
 		txtEnterFilePath = new JTextField();
 		txtEnterFilePath.setText("Enter File Path");
-		txtEnterFilePath.setBounds(70, 319, 373, 23);
+		txtEnterFilePath.setBounds(70, 301, 373, 23);
 		frmWikiSynthesizer.getContentPane().add(txtEnterFilePath);
 		txtEnterFilePath.setColumns(10);
 
@@ -121,13 +122,24 @@ public class WikiSynthesizer {
 		});
 		btnNewButton_1.setIcon(new ImageIcon(
 				"D:\\yesh workspace\\Wiki\\assets\\photos\\document.jpg"));
-		btnNewButton_1.setBounds(507, 232, 76, 79);
+		btnNewButton_1.setBounds(507, 214, 76, 79);
 		frmWikiSynthesizer.getContentPane().add(btnNewButton_1);
 
 		JLabel lblProcessDocument = new JLabel("Process Document");
 		lblProcessDocument.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblProcessDocument.setBounds(480, 320, 130, 22);
+		lblProcessDocument.setBounds(480, 302, 130, 22);
 		frmWikiSynthesizer.getContentPane().add(lblProcessDocument);
+		
+		JButton btnBackToWiki = new JButton("Back to Wiki");
+		btnBackToWiki.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Wiki wiki = new Wiki();
+				WikiSynthesizer.this.frmWikiSynthesizer.dispose();
+				wiki.frmWiki.setVisible(true);
+			}
+		});
+		btnBackToWiki.setBounds(10, 345, 108, 23);
+		frmWikiSynthesizer.getContentPane().add(btnBackToWiki);
 		frmWikiSynthesizer.getContentPane().setFocusTraversalPolicy(
 				new FocusTraversalOnArray(new Component[] { txtpnEnterSomeText,
 						btnNewButton }));

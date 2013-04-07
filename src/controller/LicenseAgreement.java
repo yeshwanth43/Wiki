@@ -16,8 +16,6 @@ import javax.swing.JLabel;
 import javax.swing.JTextPane;
 
 import org.eclipse.wb.swing.FocusTraversalOnArray;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 
 public class LicenseAgreement extends Controller {
 
