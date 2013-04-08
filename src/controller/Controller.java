@@ -50,25 +50,27 @@ public class Controller extends Thread {
 	}
 
 	public void init() {
-		LicenseAgreement lAG = new LicenseAgreement();
-		lAG.frmLicenseAgreement.setVisible(true);
-		Introduction tutorial = new Introduction();
+		Wiki wi = new Wiki();
 		WikiSynthesizer synthWindow = new WikiSynthesizer();
-		boolean licenseAgreement = true, introduction = true;
+		Introduction intro = new Introduction();
+		boolean licenseAgreement = true, introduction = true, wikiWindow = true;;
 		while (true) {
 			System.out.println("****************COMMAND*********************"
 					+ "\n" + command);
-			if (command.equalsIgnoreCase("I Accept Agreement")
+			if (command.equalsIgnoreCase("")
 					&& licenseAgreement) {
 				licenseAgreement = false;
-				lAG.frmLicenseAgreement.dispose();
-				tutorial.frmTutorial.setVisible(true);
-			} else if (command.equalsIgnoreCase("Go To Synthesizer")
-					&& introduction) {
+				intro.frmTutorial.setVisible(true);
+			} else if (command.contains("go to") && introduction) {
+				intro.frmTutorial.dispose();
+				wi.frmWiki.setVisible(true);
 				introduction = false;
-				tutorial.frmTutorial.dispose();
+			} else if (command.equalsIgnoreCase("Go to synthesizer")) {
 				synthWindow.frmWikiSynthesizer.setVisible(true);
-			} 
+				wi.frmWiki.dispose();
+			} else if (command.equalsIgnoreCase("") && wikiWindow) {
+				
+			}
 
 			try {
 				Controller.sleep(1000);

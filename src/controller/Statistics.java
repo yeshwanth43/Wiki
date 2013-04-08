@@ -49,6 +49,7 @@ public class Statistics {
 	 */
 	private void initialize() {
 		frmStatistics = new JFrame();
+		frmStatistics.setUndecorated(true);
 		final JTextPane textPane = new JTextPane();
 		textPane.setEditable(false);
 		textPane.setBounds(10, 11, 494, 248);
@@ -66,8 +67,6 @@ public class Statistics {
 				setTextPane += "Automated Readability Index:     \t"+indexes[1]+"\n";
 				setTextPane += "Flesch Kincaid Readability Index:\t"+indexes[2]+"\n";
 //				setTextPane += "SMOG Index:                      \t\t"+indexes[3]+"\n";
-				setTextPane +="\n****************************************************************************************************************\n";
-				setTextPane +="\n****************************************************************************************************************\n";
 				setTextPane +="";//TODO suggestion message
 				textPane.setText(setTextPane);
 				textPane.setEditable(false);

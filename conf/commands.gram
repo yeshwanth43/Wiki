@@ -6,4 +6,4 @@
 
 grammar commands;
 
-public <command> =  ( start | stop | pause | previous | play | save | exit | terminate) (The Application | The File);
+public <command> =  ( I Accept Agreement ) | ( Go to Wiki );

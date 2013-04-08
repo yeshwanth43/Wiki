@@ -47,12 +47,14 @@ public class ReadJson {
 						childReadability.add(reader.nextString().replaceAll(
 								"/\n+/g", ""));
 					}
+					reader.endArray();
 				} else if (name.equals("Elder Readability")) {
 					reader.beginArray();
 					while (reader.hasNext()) {
 						elderReadability.add(reader.nextString().replaceAll(
 								"/\n+/g", ""));
 					}
+					reader.endArray();
 				}
 			}
 			reader.close();
