@@ -79,7 +79,7 @@ public class WikiSynthesizer {
 			}
 		});
 		btnNewButton.setIcon(new ImageIcon(
-				"D:\\yesh workspace\\Wiki\\assets\\photos\\synth.jpg"));
+				"././assets/photos/synth.jpg"));
 		btnNewButton.setBounds(480, 40, 130, 130);
 		frmWikiSynthesizer.getContentPane().add(btnNewButton);
 
@@ -120,8 +120,7 @@ public class WikiSynthesizer {
 
 			}
 		});
-		btnNewButton_1.setIcon(new ImageIcon(
-				"D:\\yesh workspace\\Wiki\\assets\\photos\\document.jpg"));
+		btnNewButton_1.setIcon(new ImageIcon("././assets/photos/document.jpg"));
 		btnNewButton_1.setBounds(507, 214, 76, 79);
 		frmWikiSynthesizer.getContentPane().add(btnNewButton_1);
 
@@ -129,7 +128,7 @@ public class WikiSynthesizer {
 		lblProcessDocument.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblProcessDocument.setBounds(480, 302, 130, 22);
 		frmWikiSynthesizer.getContentPane().add(lblProcessDocument);
-		
+
 		JButton btnBackToWiki = new JButton("Back to Wiki");
 		btnBackToWiki.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

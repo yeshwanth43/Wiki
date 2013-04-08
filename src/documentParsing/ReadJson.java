@@ -11,6 +11,8 @@ public class ReadJson {
 
 	public ArrayList<String> arrayList = new ArrayList<String>();
 	public String[] indexes = new String[4];
+	public ArrayList<String> childReadability = new ArrayList<String>();
+	public ArrayList<String> elderReadability = new ArrayList<String>();
 
 	public ArrayList<String> readJsonFile() {
 
@@ -39,9 +41,20 @@ public class ReadJson {
 					indexes[2] = reader.nextString();
 				} else if (name.equals("SMOG Index")) {
 					indexes[3] = reader.nextString();
+				} else if (name.equals("Child Readability")) {
+					reader.beginArray();
+					while (reader.hasNext()) {
+						childReadability.add(reader.nextString().replaceAll(
+								"/\n+/g", ""));
+					}
+				} else if (name.equals("Elder Readability")) {
+					reader.beginArray();
+					while (reader.hasNext()) {
+						elderReadability.add(reader.nextString().replaceAll(
+								"/\n+/g", ""));
+					}
 				}
 			}
-			reader.endObject();
 			reader.close();
 
 		} catch (FileNotFoundException e) {
