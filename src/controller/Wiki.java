@@ -97,7 +97,7 @@ public class Wiki {
 			public void actionPerformed(ActionEvent e) {
 				POS pos = new POS();
 				Wiki.this.frmWiki.dispose();
-				pos.frame.setVisible(true);
+				pos.frmPartsOfSpeech.setVisible(true);
 			}
 		});
 		button_3.setIcon(new ImageIcon(
