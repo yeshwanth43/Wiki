@@ -13,7 +13,6 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.ScrollPaneConstants;
@@ -91,18 +90,6 @@ public class DocumentSynthesizerStatus {
 				ComponentOrientation.LEFT_TO_RIGHT);
 		frameDSS.getContentPane().setLayout(null);
 
-		JLabel lblDocumentStatistics = new JLabel("Document Statistics");
-		lblDocumentStatistics.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblDocumentStatistics.setBounds(10, 11, 149, 23);
-		frameDSS.getContentPane().add(lblDocumentStatistics);
-
-		JTextPane textPane_1 = new JTextPane();
-		textPane_1.setBackground(Color.LIGHT_GRAY);
-		textPane_1.setEditable(false);
-		textPane_1.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-		textPane_1.setBounds(10, 35, 199, 253);
-		frameDSS.getContentPane().add(textPane_1);
-
 		JScrollPane scrollPane = new JScrollPane(textPane);
 		scrollPane.setViewportBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -137,7 +124,7 @@ public class DocumentSynthesizerStatus {
 				wiki.frmWiki.setVisible(true);
 			}
 		});
-		button.setBounds(51, 299, 108, 23);
+		button.setBounds(71, 91, 108, 23);
 		frameDSS.getContentPane().add(button);
 		
 		JButton btnPause = new JButton("pause");

@@ -13,10 +13,13 @@ public class PartOfSpeech {
 		InputStream modelIn = null;
 
 		try {
-		  modelIn = new FileInputStream("en-pos-maxent.bin");
+		  modelIn = new FileInputStream("conf/en-pos-maxent.bin");
 		  POSModel model = new POSModel(modelIn);
 		  POSTaggerME tagger = new POSTaggerME(model);
-//		  tagger.tag(null);
+		  String [] tags=tagger.tag(args);
+		  for(String s: tags){
+			  System.out.println(s+"");
+		  }
 		}
 		catch (IOException e) {
 		  e.printStackTrace();

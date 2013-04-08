@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 import opennlp.tools.sentdetect.SentenceDetectorME;
 import opennlp.tools.sentdetect.SentenceModel;
@@ -40,6 +41,8 @@ public class DocParseV1 {
 	public int no_Of_Words = 0;
 	public int no_Of_Characters = 0;
 	public int no_Of_Polysyllables = 0;
+	private ArrayList<String> childReadability = new ArrayList<String>();
+	private ArrayList<String> elderReadaility = new ArrayList<String>();
 
 	public boolean parse(String resourceLocation) throws IOException {
 
@@ -69,6 +72,15 @@ public class DocParseV1 {
 			return false;
 		}
 	}
+	
+	public void processText(String text){
+		parsedText = text;
+		try {
+			docProcessing();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	private int docProcessing() throws IOException {
 		InputStream sentenceModel = new FileInputStream("conf/en-sent.bin");
@@ -89,8 +101,11 @@ public class DocParseV1 {
 				int syllable = test.CountSyllables(s);
 				totalSyllableCount += syllable;
 				no_Of_Characters += s.length();
-				if (syllable >= 3) {
+				if (syllable > 3) {
 					no_Of_Polysyllables++;
+					childReadability.add(s);
+				} else if (syllable > 5) {
+					elderReadaility.add(s);
 				}
 			}
 		} catch (IOException e) {
@@ -143,6 +158,16 @@ public class DocParseV1 {
 			arrayList.add(sentence);
 		}
 		jsonObj.put("SENTENCES", arrayList);
+		JSONArray array1 = new JSONArray();
+		for (String s : childReadability) {
+			array1.add(s);
+		}
+		jsonObj.put("Child Readability", array1);
+		JSONArray array2 = new JSONArray();
+		for (String s : elderReadaility) {
+			array2.add(s);
+		}
+		jsonObj.put("Elder Readability", array2);
 		try {
 			FileWriter fWriter = new FileWriter(new File(
 					"parsed-contents/parsedContext.json"));

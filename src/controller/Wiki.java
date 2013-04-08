@@ -61,7 +61,7 @@ public class Wiki {
 			public void actionPerformed(ActionEvent e) {
 				Readability readability = new Readability();
 				Wiki.this.frmWiki.dispose();
-				readability.frame.setVisible(true);
+				readability.frmReadabilityStatistics.setVisible(true);
 			}
 		});
 		button.setIcon(new ImageIcon("././assets/photos/readabilitylogo.jpg"));
@@ -73,7 +73,7 @@ public class Wiki {
 			public void actionPerformed(ActionEvent e) {
 				AboutUs aboutus = new AboutUs();
 				Wiki.this.frmWiki.dispose();
-				aboutus.frame.setVisible(true);
+				aboutus.frmAboutUs.setVisible(true);
 			}
 		});
 		button_1.setIcon(new ImageIcon("././assets/photos/aboutus.jpg"));
