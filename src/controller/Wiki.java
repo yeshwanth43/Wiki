@@ -46,6 +46,7 @@ public class Wiki {
 	 */
 	private void initialize() {
 		frmWiki = new JFrame();
+		frmWiki.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmWiki.getContentPane().setBackground(Color.WHITE);
 		frmWiki.getContentPane().setForeground(Color.WHITE);
 		frmWiki.setForeground(Color.WHITE);

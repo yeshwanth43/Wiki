@@ -6,4 +6,4 @@
 
 grammar commands;
 
-public <command> =  ( I Accept Agreement ) | ( Go to Wiki );
+public <command> = ( shutdown application) | ( Skip Introduction ) | ( start wiki ) | ( start Application ) | ( switch to home ) | ( back to wiki ) | ( start synthesizer ) | ( start readability calculations ) | ( Parts of speech enhancement  ) | (  About us ) | (  About Developers );
