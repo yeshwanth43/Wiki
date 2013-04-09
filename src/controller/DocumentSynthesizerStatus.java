@@ -61,7 +61,7 @@ public class DocumentSynthesizerStatus {
 		final JTextPane textPane = new JTextPane();
 		textPane.setEditable(false);
 
-		textPane.setToolTipText("this will show all the sentences and statistics of the document");
+		textPane.setToolTipText("content of the Document");
 		textPane.setName("SentenceDisplayer");
 		textPane.setFont(new Font("Arial", Font.PLAIN, 11));
 		textPane.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
@@ -116,17 +116,6 @@ public class DocumentSynthesizerStatus {
 		btnStop.setBounds(784, 299, 120, 23);
 		frameDSS.getContentPane().add(btnStop);
 		
-		JButton button = new JButton("Back to Wiki");
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Wiki wiki = new Wiki();
-				DocumentSynthesizerStatus.this.frameDSS.dispose();
-				wiki.frmWiki.setVisible(true);
-			}
-		});
-		button.setBounds(71, 91, 108, 23);
-		frameDSS.getContentPane().add(button);
-		
 		JButton btnPause = new JButton("pause");
 		btnPause.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -144,6 +133,21 @@ public class DocumentSynthesizerStatus {
 		});
 		btnResume.setBounds(596, 299, 120, 23);
 		frameDSS.getContentPane().add(btnResume);
+		
+		JButton btnBackToSynthesizer = new JButton("Back to Synthesizer");
+		btnBackToSynthesizer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				WikiSynthesizer wiks = new WikiSynthesizer();
+				DocumentSynthesizerStatus.this.frameDSS.dispose();
+				wiks.frmWikiSynthesizer.setVisible(true);
+			}
+		});
+		btnBackToSynthesizer.setBounds(38, 299, 154, 23);
+		frameDSS.getContentPane().add(btnBackToSynthesizer);
+		
+		JButton button = new JButton("Back to Wiki");
+		button.setBounds(59, 144, 108, 23);
+		frameDSS.getContentPane().add(button);
 		frameDSS.setBackground(Color.WHITE);
 		frameDSS.setVisible(true);
 		frameDSS.setTitle("Synthesizer");

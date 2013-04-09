@@ -13,11 +13,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+import speechSynthesis.Player;
+
 
 public class Introduction {
 
 	public JFrame frmTutorial;
-
+	private Player player = new Player();
 	/**
 	 * Launch the application.
 	 */
@@ -46,6 +48,7 @@ public class Introduction {
 	 */
 	private void initialize() {
 		frmTutorial = new JFrame();
+		frmTutorial.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmTutorial.setLocation(new Point(150, 150));
 		frmTutorial.getContentPane().setLocation(new Point(150, 150));
 		frmTutorial.getContentPane().setSize(new Dimension(760, 460));
@@ -53,9 +56,36 @@ public class Introduction {
 		frmTutorial.getContentPane().setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		frmTutorial.getContentPane().setFont(new Font("Arial", Font.PLAIN, 11));
 		frmTutorial.getContentPane().setLayout(null);
+		JButton button = new JButton("");
+		button.setBorderPainted(false);
+		button.setFocusable(false);
+		button.setFocusTraversalKeysEnabled(false);
+		button.setFocusPainted(false);
+		button.setIcon(new ImageIcon("././assets/photos/Wlogo.jpg"));
+		button.setForeground(Color.WHITE);
+		button.setBackground(Color.WHITE);
+		button.setBounds(10, 11, 624, 314);
+		frmTutorial.getContentPane().add(button);
 		
+		final JButton btnStopIntroduction = new JButton("Stop Introduction");
+		btnStopIntroduction.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				player.stop();
+				btnStopIntroduction.setVisible(false);
+			}
+		});
+		btnStopIntroduction.setVisible(false);
+		btnStopIntroduction.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+		btnStopIntroduction.setBounds(158, 351, 150, 23);
+		frmTutorial.getContentPane().add(btnStopIntroduction);
 		
 		JButton btnIntroduction = new JButton("Introduction");
+		btnIntroduction.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				player.giveIntroduction();
+				btnStopIntroduction.setVisible(true);
+			}
+		});
 		btnIntroduction.setBounds(10, 351, 119, 23);
 		frmTutorial.getContentPane().add(btnIntroduction);
 		
@@ -69,17 +99,6 @@ public class Introduction {
 		});
 		btnWiki.setBounds(537, 351, 89, 23);
 		frmTutorial.getContentPane().add(btnWiki);
-		
-		JButton button = new JButton("");
-		button.setBorderPainted(false);
-		button.setFocusable(false);
-		button.setFocusTraversalKeysEnabled(false);
-		button.setFocusPainted(false);
-		button.setIcon(new ImageIcon("././assets/photos/Wlogo.jpg"));
-		button.setForeground(Color.WHITE);
-		button.setBackground(Color.WHITE);
-		button.setBounds(10, 11, 624, 314);
-		frmTutorial.getContentPane().add(button);
 		frmTutorial.setTitle("Introduction");
 		frmTutorial.setResizable(false);
 		frmTutorial.setFont(new Font("Arial", Font.PLAIN, 12));

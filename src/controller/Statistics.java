@@ -49,7 +49,7 @@ public class Statistics {
 	 */
 	private void initialize() {
 		frmStatistics = new JFrame();
-		frmStatistics.setUndecorated(true);
+		frmStatistics.setLocationByPlatform(true);
 		final JTextPane textPane = new JTextPane();
 		textPane.setEditable(false);
 		textPane.setBounds(10, 11, 494, 248);
@@ -72,7 +72,7 @@ public class Statistics {
 				textPane.setEditable(false);
 			}
 		});
-		frmStatistics.setLocation(new Point(400, 300));
+		frmStatistics.setLocation(new Point(800, 500));
 		frmStatistics.setSize(new Dimension(520, 334));
 		frmStatistics.getContentPane().setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		frmStatistics.getContentPane().setLocation(new Point(200, 150));

@@ -35,7 +35,7 @@ public class Player implements Runnable {
 	public void start() {
 		try {
 			this.audioInputStream = AudioSystem.getAudioInputStream(new File(
-					"././assets/synthesize.wav"));
+					"././assets/synthesized.wav"));
 		} catch (UnsupportedAudioFileException | IOException e) {
 			e.printStackTrace();
 		}
@@ -59,6 +59,19 @@ public class Player implements Runnable {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void giveIntroduction(){
+		try {
+			this.audioInputStream = AudioSystem.getAudioInputStream(new File(
+					"././assets/Introduction.wav"));
+		} catch (UnsupportedAudioFileException | IOException e) {
+			e.printStackTrace();
+		}
+		format = audioInputStream.getFormat();
+		thread = new Thread(this);
+		thread.setName("Playback");
+		thread.start();
 	}
 
 	public void resumePlayer() {
