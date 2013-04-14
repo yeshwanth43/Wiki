@@ -56,7 +56,7 @@ public class Partofspeech {
 		Partofspeech pos = new Partofspeech();
 		System.out
 				.println(pos
-						.textTagger("How does technology aid the battle against modern day slavery? Tune in to the live-stream from the Google DC office Tuesday, April 9, 2.30pm - 4.00pm EDT, where Polaris Project, Liberty Asia and La Strada International will join us to announce an exciting new initiative, followed by panel discussions exploring how technology can disrupt human trafficking. "));
+						.textTagger("Conversation between boy & girl after 3 months of breakup"));
 	}
 
 }

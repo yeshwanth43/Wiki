@@ -37,6 +37,7 @@ public class DocumentSynthesizerStatus {
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
+	private boolean flag = true;
 
 	/**
 	 * Launch the application.
@@ -79,7 +80,7 @@ public class DocumentSynthesizerStatus {
 		textPane.setSize(new Dimension(704, 375));
 		textPane.setBounds(190, 11, 704, 375);
 		frameDSS.getContentPane().add(textPane);
-		
+
 		final JScrollPane scrollPane = new JScrollPane(textPane);
 		scrollPane.setViewportBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
 		scrollPane.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -102,26 +103,35 @@ public class DocumentSynthesizerStatus {
 			}
 		});
 
-
 		JButton btnNewButton = new JButton("Synthesize");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				float pitch = 0f, pitchRange = 0f, wrpm = 0f, durationStretch = 0f;
-				try {
-					pitch = Float.parseFloat(textField.getText());
-					pitchRange = Float.parseFloat(textField_1.getText());
-					durationStretch = Float.parseFloat(textField_2.getText());
-					wrpm = Float.parseFloat(textField_3.getText());
-					SynthesisV1 sv1 = new SynthesisV1();
-					sv1.speak(arrayList.toString(), pitch, pitchRange,
-							durationStretch, wrpm);
-					player.start();
-				} catch (NumberFormatException e) {
-					e.printStackTrace();
+				if (flag) {
+					flag = false;
+					float pitch = 0f, pitchRange = 0f, wrpm = 0f, durationStretch = 0f;
+					try {
+						pitch = Float.parseFloat(textField.getText());
+						pitchRange = Float.parseFloat(textField_1.getText());
+						durationStretch = Float.parseFloat(textField_2
+								.getText());
+						wrpm = Float.parseFloat(textField_3.getText());
+						SynthesisV1 sv1 = new SynthesisV1();
+						sv1.speak(arrayList.toString(), pitch, pitchRange,
+								durationStretch, wrpm);
+						player.start();
+					} catch (NumberFormatException e) {
+						e.printStackTrace();
+						JOptionPane.showMessageDialog(frameDSS,
+								"Give Numerical Data for Attributes",
+								"Enter numerical Data",
+								JOptionPane.WARNING_MESSAGE);
+					}
+				} else {
 					JOptionPane
-							.showMessageDialog(frameDSS,
-									"Give Numerical Data for Attributes",
-									"Enter numerical Data",
+							.showMessageDialog(
+									frameDSS,
+									"Stop the running synthesizer, to start another one",
+									"Stop Synthesizer",
 									JOptionPane.WARNING_MESSAGE);
 				}
 			}
@@ -133,6 +143,7 @@ public class DocumentSynthesizerStatus {
 		btnStop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				player.stop();
+				flag = true;
 			}
 		});
 		btnStop.setBounds(423, 388, 120, 23);

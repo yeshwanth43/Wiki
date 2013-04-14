@@ -87,14 +87,65 @@ public class POS {
 					String[] array1 = taggedText.split(" ");
 					for (String s : array1) {
 						String[] array2 = s.split("_");
-						outputText += array2[0] + "\t" + array2[1] + "\n";
+						if (array2[1].startsWith("N")) {
+							array2[1] = "NOUN";
+						} else if (array2[1].startsWith("DT")
+								|| array2[1].startsWith("P")
+								|| array2[1].startsWith("WP")) {
+							array2[1] = "PRONOUN";
+						} else if (array2[1].startsWith("J")
+								|| array2[1].equals("AP")
+								|| array2[1].equals("ALP")) {
+							array2[1] = "ADJECTIVE ";
+						} else if (array2[1].startsWith("V")
+								|| array2[1].startsWith("BE")
+								|| array2[1].startsWith("DO")
+								|| array2[1].equals("MD")) {
+							array2[1] = "VERB";
+						} else if (array2[1].startsWith("R")
+								|| array2[1].startsWith("AB")
+								|| array2[1].startsWith("HV")
+								|| array2[1].equals("QL")
+								|| array2[1].equals("*")
+								|| array2[1].equals("WRB")) {
+							array2[1] = "ADVERB";
+						} else if (array2[1].equals("IN")
+								|| array2[1].equals("TO")) {
+							array2[1] = "PREPOSITION";
+						} else if (array2[1].startsWith("CC")) {
+							array2[1] = "CONJUNCTION";
+						} else if (array2[1].equals("UH")) {
+							array2[1] = "INTERJECTION";
+						} else if (array2[1].equals("ABX")) {
+							array2[1] = "QUANTIFIER ";
+						} else if (array2[1].equals("AT")) {
+							array2[1] = "ARTICLE ";
+						} else if (array2[1].equals("CD")
+								|| array2[1].equals("OD")) {
+							array2[1] = "NUMBERS ";
+						} else if (array2[1].equals("WQL")) {
+							array2[1] = "WH QUALIFIER";
+						} else if (array2[1].equals("WDT")) {
+							array2[1] = "WH DETERMINER";
+						} else if (array2[1].equals("(")
+								|| array2[1].equals(")")
+								|| array2[1].equals(".")
+								|| array2[1].equals(":")
+								|| array2[1].equals("--")
+								|| array2[1].equals(",")
+								|| array2[1].equals("*")) {
+							array2[0] = "";
+							array2[1] = "";
+						}
+
+						outputText += array2[0] + "\t\t" + array2[1] + "\n";
 					}
 					PartsOfSpeech partsos = new PartsOfSpeech(outputText);
 					partsos.frmPartsOfSpeech.setVisible(true);
 				} else {
 					JOptionPane.showMessageDialog(frmPartsOfSpeech,
-							"Enter some Text to TAG",
-							"Enter Some Text", JOptionPane.WARNING_MESSAGE);
+							"Enter some Text to TAG", "Enter Some Text",
+							JOptionPane.WARNING_MESSAGE);
 				}
 			}
 		});

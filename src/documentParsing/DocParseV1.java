@@ -72,8 +72,8 @@ public class DocParseV1 {
 			return false;
 		}
 	}
-	
-	public void processText(String text){
+
+	public void processText(String text) {
 		parsedText = text;
 		try {
 			docProcessing();
@@ -148,7 +148,10 @@ public class DocParseV1 {
 				no_Of_Sentences);
 		double gunningFogIndex = readability.gunningFogIndex(no_Of_Words,
 				no_Of_Sentences, no_Of_Polysyllables);
+		double fleschReadingEase = readability.fleschReadingEase(no_Of_Words,
+				no_Of_Sentences, totalSyllableCount);
 		JSONArray arrayList = new JSONArray();
+		jsonObj.put("Flesch Reading Ease", fleschReadingEase);
 		jsonObj.put("Flesch Kincaid Readability Index",
 				fleschKincaidReadabilityIndex);
 		jsonObj.put("Automated Readability Index", automatedReadabilityIndex);

@@ -63,21 +63,22 @@ public class EnhanceStatistics {
 		textPane.setBounds(10, 11, 524, 300);
 		frmEnhanceReadability.getContentPane().add(textPane);
 
-		frmEnhanceReadability.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+		frmEnhanceReadability
+				.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		frmEnhanceReadability.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmEnhanceReadability.setLocation(new Point(400, 300));
 		frmEnhanceReadability.getContentPane().setSize(new Dimension(560, 360));
 		frmEnhanceReadability.getContentPane().setLayout(null);
-		
+
 		final JScrollPane scrollPane = new JScrollPane(textPane);
 		scrollPane.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		scrollPane.setBorder(new LineBorder(new Color(130, 135, 144), 1, true));
 		scrollPane.setAutoscrolls(true);
 		scrollPane.setBounds(10, 11, 524, 300);
 		scrollPane.getVerticalScrollBar().setValue(0);
-		scrollPane.getViewport().setViewPosition(new Point(0,0));
+		scrollPane.getViewport().setViewPosition(new Point(0, 0));
 		frmEnhanceReadability.getContentPane().add(scrollPane);
-		
+
 		JButton btnNewButton = new JButton("Close");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -96,29 +97,26 @@ public class EnhanceStatistics {
 				rj.readJsonFile();
 				child = rj.childReadability;
 				elder = rj.elderReadability;
-				if(!child.isEmpty()){
+				if (!child.isEmpty()) {
 					setTextPane = "To make your Document/Text understable to children, we suggest you to replace following words, with shorter words of same meaning.";
-					setTextPane +="\n*****************************************************************************************************\n";
-					setTextPane +="\n*****************************************************************************************************\n";
-					for(String s : child){
-						setTextPane += "   "+s+"\n";
+					setTextPane += "\n\n";
+					for (String s : child) {
+						setTextPane += "   " + s + "\n";
 					}
-				}else if(!elder.isEmpty()){
-					setTextPane +="\n*****************************************************************************************************\n";
-					setTextPane +="\n*****************************************************************************************************\n";
+				} else if (!elder.isEmpty()) {
+					setTextPane += "\n\n";
 					setTextPane += "We suggest you to replace these complex words";
-					for(String s : elder){
-						setTextPane += "   "+s+"\n";
+					for (String s : elder) {
+						setTextPane += "   " + s + "\n";
 					}
-					
-				} else{
+
+				} else {
 					setTextPane += "Your Document/Text  Doesn't have much complex words to trouble you.";
 				}
 				textPane.setText(setTextPane);
 				textPane.setEditable(false);
 			}
 		});
-		
-		
+
 	}
 }

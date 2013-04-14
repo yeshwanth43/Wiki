@@ -31,4 +31,10 @@ public class ReadabilityIndexes {
 		readabilityIndex = (((0.39) * (totalWords / totalSentences)) + ((11.8) * (totalSyllableCount / totalWords)));
 		return readabilityIndex;
 	}
+
+	public double fleschReadingEase(int totalWords, int totalSentences,
+			int totalSyllables) {
+		double findex = ((206.835) - ((1.015) * (totalWords / totalSentences)) - ((84.6) * (totalSyllables / totalWords)));
+		return findex;
+	}
 }

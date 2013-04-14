@@ -10,7 +10,7 @@ import com.google.gson.stream.JsonReader;
 public class ReadJson {
 
 	public ArrayList<String> arrayList = new ArrayList<String>();
-	public String[] indexes = new String[4];
+	public String[] indexes = new String[5];
 	public ArrayList<String> childReadability = new ArrayList<String>();
 	public ArrayList<String> elderReadability = new ArrayList<String>();
 
@@ -41,6 +41,8 @@ public class ReadJson {
 					indexes[2] = reader.nextString();
 				} else if (name.equals("SMOG Index")) {
 					indexes[3] = reader.nextString();
+				} else if (name.equals("Flesch Reading Ease")) {
+					indexes[4] = reader.nextString();
 				} else if (name.equals("Child Readability")) {
 					reader.beginArray();
 					while (reader.hasNext()) {

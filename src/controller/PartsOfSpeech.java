@@ -13,6 +13,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import javax.swing.JScrollPane;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
 
 public class PartsOfSpeech {
 
@@ -52,17 +55,15 @@ public class PartsOfSpeech {
 	 */
 	private void initialize() {
 		frmPartsOfSpeech = new JFrame();
-
-		frmPartsOfSpeech.setUndecorated(true);
+		frmPartsOfSpeech.getContentPane().setSize(new Dimension(560, 360));
 		frmPartsOfSpeech.getContentPane().setComponentOrientation(
 				ComponentOrientation.LEFT_TO_RIGHT);
-		frmPartsOfSpeech.getContentPane().setSize(new Dimension(560, 360));
 		frmPartsOfSpeech.getContentPane().setLayout(null);
 
 		final JTextPane textPane = new JTextPane();
-		textPane.setBounds(10, 11, 534, 289);
+		textPane.setEditable(false);
+		textPane.setBounds(10, 11, 540, 314);
 		frmPartsOfSpeech.getContentPane().add(textPane);
-
 		frmPartsOfSpeech.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(WindowEvent e) {
@@ -76,18 +77,23 @@ public class PartsOfSpeech {
 				PartsOfSpeech.this.frmPartsOfSpeech.dispose();
 			}
 		});
-		btnClose.setBounds(231, 311, 89, 23);
+		btnClose.setBounds(233, 336, 89, 23);
 		frmPartsOfSpeech.getContentPane().add(btnClose);
+
+		JScrollPane scrollPane = new JScrollPane(textPane);
+		scrollPane.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
+		scrollPane.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+		scrollPane.setFont(new Font("Tahoma", Font.BOLD, 12));
+		scrollPane.setBounds(10, 11, 540, 314);
+		frmPartsOfSpeech.getContentPane().add(scrollPane);
+		frmPartsOfSpeech.setTitle("Tagged Text");
+		frmPartsOfSpeech.setUndecorated(true);
+		frmPartsOfSpeech.setSize(new Dimension(560, 360));
+		frmPartsOfSpeech.setLocation(new Point(400, 300));
 		frmPartsOfSpeech
 				.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-		frmPartsOfSpeech.setFont(new Font("Arial", Font.PLAIN, 12));
-		frmPartsOfSpeech.setLocation(new Point(500, 400));
 		frmPartsOfSpeech.setResizable(false);
-		frmPartsOfSpeech.setSize(new Dimension(560, 360));
-		frmPartsOfSpeech.setVisible(true);
-		frmPartsOfSpeech.setTitle("Parts of Speech");
-		frmPartsOfSpeech.setBounds(100, 100, 560, 360);
+		frmPartsOfSpeech.setFont(new Font("Arial", Font.PLAIN, 12));
 		frmPartsOfSpeech.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
-
 }

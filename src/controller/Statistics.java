@@ -58,27 +58,33 @@ public class Statistics {
 			@Override
 			public void windowOpened(WindowEvent arg0) {
 
-
 				String setTextPane = "";
 				ReadJson rj = new ReadJson();
 				rj.readJsonFile();
-				String [] indexes = rj.indexes;
-				setTextPane =  "Gunning Fog Index:               \t"+indexes[0]+"\n";
-				setTextPane += "Automated Readability Index:     \t"+indexes[1]+"\n";
-				setTextPane += "Flesch Kincaid Readability Index:\t"+indexes[2]+"\n";
-//				setTextPane += "SMOG Index:                      \t\t"+indexes[3]+"\n";
-				setTextPane +="";//TODO suggestion message
+				String[] indexes = rj.indexes;
+				setTextPane = "Gunning Fog Index:               \t"
+						+ indexes[0] + "\n";
+				setTextPane += "Automated Readability Index:     \t"
+						+ indexes[1] + "\n";
+				setTextPane += "Flesch Kincaid Readability Index:\t"
+						+ indexes[2] + "\n";
+				setTextPane += "SMOG Index:                      \t\t"
+						+ indexes[3] + "\n";
+				setTextPane += "Flesch Reading Ease:             \t"
+						+ indexes[4] + "\n";
+				setTextPane += "";// TODO suggestion message
 				textPane.setText(setTextPane);
 				textPane.setEditable(false);
 			}
 		});
 		frmStatistics.setLocation(new Point(800, 500));
 		frmStatistics.setSize(new Dimension(520, 334));
-		frmStatistics.getContentPane().setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+		frmStatistics.getContentPane().setComponentOrientation(
+				ComponentOrientation.LEFT_TO_RIGHT);
 		frmStatistics.getContentPane().setLocation(new Point(200, 150));
 		frmStatistics.getContentPane().setSize(new Dimension(520, 320));
 		frmStatistics.getContentPane().setLayout(null);
-		
+
 		JButton btnClose = new JButton("close");
 		btnClose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
