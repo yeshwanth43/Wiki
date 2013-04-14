@@ -18,6 +18,7 @@ import documentParsing.Partofspeech;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JScrollPane;
 
 public class POS {
 
@@ -51,6 +52,7 @@ public class POS {
 	 */
 	private void initialize() {
 		frmPartsOfSpeech = new JFrame();
+		frmPartsOfSpeech.setResizable(false);
 		frmPartsOfSpeech.getContentPane().setComponentOrientation(
 				ComponentOrientation.LEFT_TO_RIGHT);
 		frmPartsOfSpeech.getContentPane().setSize(new Dimension(620, 380));
@@ -151,6 +153,12 @@ public class POS {
 		});
 		btnTagTheText.setBounds(423, 312, 120, 23);
 		frmPartsOfSpeech.getContentPane().add(btnTagTheText);
+		
+		JScrollPane scrollPane = new JScrollPane(textPane);
+		scrollPane.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+		scrollPane.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
+		scrollPane.setBounds(10, 11, 584, 290);
+		frmPartsOfSpeech.getContentPane().add(scrollPane);
 		frmPartsOfSpeech.setFont(new Font("Arial", Font.PLAIN, 12));
 		frmPartsOfSpeech.setLocation(new Point(200, 150));
 		frmPartsOfSpeech.setSize(new Dimension(620, 380));

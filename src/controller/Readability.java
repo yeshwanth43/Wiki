@@ -26,7 +26,7 @@ public class Readability {
 
 	public JFrame frmReadabilityStatistics;
 	private JTextField textField;
-
+	private boolean flag = false;
 
 	/**
 	 * Launch the application.
@@ -56,11 +56,13 @@ public class Readability {
 	 */
 	private void initialize() {
 		frmReadabilityStatistics = new JFrame();
-		frmReadabilityStatistics.getContentPane().setSize(new Dimension(720, 420));
+		frmReadabilityStatistics.getContentPane().setSize(
+				new Dimension(720, 420));
 		frmReadabilityStatistics.getContentPane().setLayout(null);
-		
+
 		final JTextPane textPane = new JTextPane();
-		textPane.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		textPane.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null,
+				null, null));
 		textPane.setMargin(new Insets(5, 5, 5, 5));
 		textPane.setBounds(10, 11, 530, 271);
 		frmReadabilityStatistics.getContentPane().add(textPane);
@@ -73,19 +75,20 @@ public class Readability {
 		label.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		label.setBounds(10, 308, 66, 22);
 		frmReadabilityStatistics.getContentPane().add(label);
-		
+
 		JButton btnReadability = new JButton("Readability");
 		btnReadability.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String text = textPane.getText();
-				if(!text.equals("")){
+				if (!text.equals("")) {
+					flag = true;
 					DocParseV1 dv1 = new DocParseV1();
 					dv1.processText(text);
 					Statistics stats = new Statistics();
 					stats.frmStatistics.setVisible(true);
 				} else {
 					JOptionPane.showMessageDialog(frmReadabilityStatistics,
-							"Please Enter some TEXT and then Click Readability ",
+							"Enter some TEXT and then Click Readability ",
 							"Enter Some Text", JOptionPane.WARNING_MESSAGE);
 				}
 			}
@@ -93,7 +96,7 @@ public class Readability {
 		btnReadability.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnReadability.setBounds(550, 21, 154, 23);
 		frmReadabilityStatistics.getContentPane().add(btnReadability);
-		
+
 		JButton btnBackToWiki = new JButton("Back to Wiki");
 		btnBackToWiki.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -104,18 +107,24 @@ public class Readability {
 		});
 		btnBackToWiki.setBounds(10, 358, 140, 23);
 		frmReadabilityStatistics.getContentPane().add(btnBackToWiki);
-		
+
 		JButton btnNewButton = new JButton("Enhance Readability");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				EnhanceStatistics ehs = new EnhanceStatistics();
-				ehs.frmEnhanceReadability.setVisible(true);
+				if (flag) {
+					EnhanceStatistics ehs = new EnhanceStatistics();
+					ehs.frmEnhanceReadability.setVisible(true);
+				} else {
+					JOptionPane.showMessageDialog(frmReadabilityStatistics,
+							"you cannot Enhace, without giving any content ",
+							"Give Text/Document", JOptionPane.WARNING_MESSAGE);
+				}
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton.setBounds(550, 80, 154, 23);
 		frmReadabilityStatistics.getContentPane().add(btnNewButton);
-		
+
 		JButton btnProcessDocument = new JButton("Process Document");
 		btnProcessDocument.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -128,6 +137,7 @@ public class Readability {
 								"File not Found", JOptionPane.WARNING_MESSAGE);
 					} else {
 						Statistics stats = new Statistics();
+						flag = true;
 						stats.frmStatistics.setVisible(true);
 					}
 				} catch (IOException e1) {
@@ -140,7 +150,8 @@ public class Readability {
 		frmReadabilityStatistics.getContentPane().add(btnProcessDocument);
 		frmReadabilityStatistics.setLocation(new Point(200, 150));
 		frmReadabilityStatistics.setFont(new Font("Arial", Font.PLAIN, 12));
-		frmReadabilityStatistics.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+		frmReadabilityStatistics
+				.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		frmReadabilityStatistics.setResizable(false);
 		frmReadabilityStatistics.setTitle("Readability Statistics");
 		frmReadabilityStatistics.setSize(new Dimension(720, 420));
