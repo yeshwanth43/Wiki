@@ -6,4 +6,4 @@
 
 grammar commands;
 
-public <command> = ( shutdown application) | ( leave Introduction ) | ( start wiki ) | (  Application start) | ( switch to home ) | ( back to wiki ) | ( synthesizer start ) | ( begin readability calculations ) | ( Parts of speech enhancement  ) | (  About us ) | (  About Developers );
+public <command> = ( shutdown application) | ( leave Introduction ) | ( start wiki ) | (  Application start) | ( switch to home ) | ( back to wiki ) | ( synthesizer start ) | ( begin readability calculations ) | ( Parts of speech enhancement  ) | (  About Developers );

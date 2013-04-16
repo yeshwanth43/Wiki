@@ -99,6 +99,16 @@ public class Introduction {
 		});
 		btnWiki.setBounds(537, 351, 89, 23);
 		frmTutorial.getContentPane().add(btnWiki);
+		
+		JButton btnTestMic = new JButton("Test mic");
+		btnTestMic.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				VoiceInteraction mic = new VoiceInteraction();
+				mic.frmMicroPhone.setVisible(true);
+			}
+		});
+		btnTestMic.setBounds(379, 351, 102, 23);
+		frmTutorial.getContentPane().add(btnTestMic);
 		frmTutorial.setTitle("Introduction");
 		frmTutorial.setResizable(false);
 		frmTutorial.setFont(new Font("Arial", Font.PLAIN, 12));
