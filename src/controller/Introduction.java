@@ -103,8 +103,6 @@ public class Introduction {
 		JButton btnTestMic = new JButton("Test mic");
 		btnTestMic.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				VoiceInteraction mic = new VoiceInteraction();
-				mic.frmMicroPhone.setVisible(true);
 			}
 		});
 		btnTestMic.setBounds(379, 351, 102, 23);
