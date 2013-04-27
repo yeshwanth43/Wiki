@@ -1,19 +1,143 @@
 package controller;
 
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.ComponentOrientation;
+import java.awt.Point;
+import java.awt.Color;
+import javax.swing.JLabel;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
+import javax.swing.border.LineBorder;
+import javax.swing.JTextPane;
+
 import edu.cmu.sphinx.frontend.util.Microphone;
 import edu.cmu.sphinx.recognizer.Recognizer;
 import edu.cmu.sphinx.result.Result;
 import edu.cmu.sphinx.util.props.ConfigurationManager;
 
-public class Controller implements Runnable {
+public class MainEntry implements Runnable {
 
+	public JFrame frmWelcome;
+	private JTextPane textPane;
+	private boolean flag = true, flag1 = true;
 	public String command = new String();
-	public boolean recognizerError = false;
 	private Thread threadRecognizer;
 	private Thread threadActions;
-	private boolean flag = true;
 
-	public Controller() {
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					MainEntry window = new MainEntry();
+					window.frmWelcome.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public MainEntry() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frmWelcome = new JFrame();
+		frmWelcome.getContentPane().setBackground(Color.WHITE);
+		frmWelcome.getContentPane().setForeground(Color.WHITE);
+		frmWelcome.getContentPane().setSize(new Dimension(780, 460));
+		frmWelcome.getContentPane().setLayout(null);
+
+		final JLabel lblWelcome = new JLabel("Welcome");
+		lblWelcome.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblWelcome.setBounds(357, 11, 124, 38);
+		frmWelcome.getContentPane().add(lblWelcome);
+
+		final JLabel lblTestRecognizer = new JLabel("Test Recognizer");
+		lblTestRecognizer.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblTestRecognizer.setBounds(314, 383, 197, 38);
+		frmWelcome.getContentPane().add(lblTestRecognizer);
+
+		final JButton btnStartWiki = new JButton("Start Wiki");
+		btnStartWiki.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Introduction intr = new Introduction();
+				intr.frmTutorial.setVisible(true);
+				MainEntry.this.frmWelcome.dispose();
+			}
+		});
+		btnStartWiki.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
+		btnStartWiki.setBackground(Color.LIGHT_GRAY);
+		btnStartWiki.setBounds(606, 327, 124, 23);
+		frmWelcome.getContentPane().add(btnStartWiki);
+
+		textPane = new JTextPane();
+		textPane.setSelectionColor(Color.LIGHT_GRAY);
+		textPane.setFont(new Font("Tahoma", Font.BOLD, 16));
+		textPane.setEditable(false);
+		textPane.setBorder(new LineBorder(new Color(192, 192, 192), 0, true));
+		textPane.setBounds(100, 11, 600, 78);
+		textPane.setVisible(false);
+		frmWelcome.getContentPane().add(textPane);
+
+		JButton btnNewButton = new JButton("");
+		btnNewButton.setFocusPainted(false);
+		btnNewButton.setFocusTraversalKeysEnabled(false);
+		btnNewButton.setFocusable(false);
+		btnNewButton.setBorderPainted(false);
+		btnNewButton
+				.setBorder(new LineBorder(new Color(192, 192, 192), 0, true));
+		btnNewButton.setIcon(new ImageIcon(
+				"././assets/photos/Microphone-icon.jpg"));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (flag) {
+					flag = false;
+					lblWelcome.setVisible(false);
+					lblTestRecognizer.setVisible(false);
+					btnStartWiki.setVisible(false);
+					textPane.setVisible(true);
+					threadInitialize();
+					startRecognizer();
+				} else {
+					JOptionPane.showMessageDialog(frmWelcome,
+							"Recognizer already started", "Recognizer Started",
+							JOptionPane.WARNING_MESSAGE);
+				}
+
+			}
+		});
+		btnNewButton.setBounds(271, 100, 250, 250);
+		frmWelcome.getContentPane().add(btnNewButton);
+
+		frmWelcome.setLocation(new Point(450, 450));
+		frmWelcome.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+		frmWelcome.setFont(new Font("Arial", Font.PLAIN, 12));
+		frmWelcome.setTitle("Welcome");
+		frmWelcome.setResizable(false);
+		frmWelcome.setSize(new Dimension(780, 460));
+		frmWelcome.setBounds(100, 100, 780, 460);
+		frmWelcome.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
+	public void threadInitialize() {
 		threadRecognizer = new Thread(this, "Recognizer");
 		threadActions = new Thread(this, "Actions");
 	}
@@ -39,8 +163,8 @@ public class Controller implements Runnable {
 	@Override
 	public void run() {
 
-		if (flag) {
-			flag = false;
+		if (flag1) {
+			flag1 = false;
 			System.out.println("**************Thread Started*************");
 			System.out.println("**************Recognizer Started*********");
 
@@ -50,15 +174,20 @@ public class Controller implements Runnable {
 			recognizer.allocate();
 			Microphone microphone = (Microphone) cm.lookup("microphone");
 			if (!microphone.startRecording()) {
+				flag = true;
 				System.out.println("Cannot start microphone.");
 				recognizer.deallocate();
-				recognizerError = true;
+				threadRecognizer = null;
+				JOptionPane.showMessageDialog(frmWelcome,
+						"Cannot hear on your Microphone, caught an Exception",
+						"Recognizer Exception", JOptionPane.WARNING_MESSAGE);
 			}
 			while (true) {
 				System.out.println("Start speaking. Press Ctrl-C to quit.\n");
 				Result result = recognizer.recognize();
 				if (result != null) {
 					command = result.getBestFinalResultNoFiller();
+					textPane.setText("\n\t\tYou said: " + command);
 					System.out.println("You said: " + command + '\n');
 				} else {
 					System.out.println("I can't hear what you said.\n");
@@ -172,14 +301,6 @@ public class Controller implements Runnable {
 				e.printStackTrace();
 			}
 		}
-	}
-
-	public static void main(String[] args) {
-
-		Controller control = new Controller();
-		control.startRecognizer();
-		System.out.println("in main method");
-
 	}
 
 }
